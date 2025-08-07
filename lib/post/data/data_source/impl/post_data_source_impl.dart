@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart';
+import 'package:post_bookmark/core/utils/errors/post_error.dart';
 import 'package:post_bookmark/core/utils/http/data_source/http_data_source.dart';
 import 'package:post_bookmark/core/utils/http/http_url.dart';
 import 'package:post_bookmark/post/data/data_source/post_data_source.dart';
@@ -27,7 +28,7 @@ class PostDataSourceImpl implements PostDataSource {
 
       return json.map((j) => PostDto.fromJson(j)).toList();
     } else {
-      throw Exception();
+      throw PostError.networkError;
     }
   }
 
@@ -45,7 +46,7 @@ class PostDataSourceImpl implements PostDataSource {
 
       return PostDto.fromJson(json);
     } else {
-      throw Exception();
+      throw PostError.networkError;
     }
   }
 }
