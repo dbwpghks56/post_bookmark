@@ -12,6 +12,7 @@ class PostScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Post> posts = state.posts;
+    final Set<String> bookmarks = state.bookmarks;
 
     return Scaffold(
       body: state.isLoading == false
@@ -22,6 +23,7 @@ class PostScreen extends StatelessWidget {
                   onTap: () {
                     onAction(PostAction.tapPost(postId: posts[index].id));
                   },
+                  behavior: HitTestBehavior.opaque,
                   child: SizedBox(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,14 +42,27 @@ class PostScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        IconButton(
-                          icon: Icon(Icons.bookmark_add_outlined),
-                          onPressed: () {
-                            onAction(
-                              PostAction.tapBookMark(postId: posts[index].id),
-                            );
-                          },
-                        ),
+                        bookmarks.contains(posts[index].id.toString())
+                            ? IconButton(
+                                icon: Icon(Icons.bookmark_add),
+                                onPressed: () {
+                                  onAction(
+                                    PostAction.tapBookMark(
+                                      postId: posts[index].id,
+                                    ),
+                                  );
+                                },
+                              )
+                            : IconButton(
+                                icon: Icon(Icons.bookmark_add_outlined),
+                                onPressed: () {
+                                  onAction(
+                                    PostAction.tapBookMark(
+                                      postId: posts[index].id,
+                                    ),
+                                  );
+                                },
+                              ),
                       ],
                     ),
                   ),

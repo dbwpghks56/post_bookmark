@@ -17,12 +17,12 @@ class PostScreenRoot extends StatelessWidget {
       builder: (context, _) {
         return PostScreen(
           state: viewModel.state,
-          onAction: (PostAction action) {
+          onAction: (PostAction action) async {
             switch (action) {
               case TapPost():
                 context.push(Routes.detail.changeIdtoValue(id: action.postId));
               case TapBookMark():
-                break;
+                await viewModel.onAction(action);
             }
           },
         );
