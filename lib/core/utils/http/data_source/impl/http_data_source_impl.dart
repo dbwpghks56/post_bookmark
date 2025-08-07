@@ -10,7 +10,9 @@ class HttpDataSourceImpl implements HttpDataSource {
         .get(url, headers: headers)
         .timeout(
           const Duration(seconds: 10),
-          onTimeout: throw PostError.timeoutError,
+          onTimeout: () {
+            throw PostError.timeoutError;
+          },
         );
   }
 }
