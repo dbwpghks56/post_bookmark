@@ -40,15 +40,13 @@ class PostScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          child: IconButton(
-                            icon: Icon(Icons.bookmark_add_outlined),
-                            onPressed: () {
-                              onAction(
-                                PostAction.tapBookMark(postId: posts[index].id),
-                              );
-                            },
-                          ),
+                        IconButton(
+                          icon: Icon(Icons.bookmark_add_outlined),
+                          onPressed: () {
+                            onAction(
+                              PostAction.tapBookMark(postId: posts[index].id),
+                            );
+                          },
                         ),
                       ],
                     ),
