@@ -16,8 +16,7 @@ class PostViewModel extends ChangeNotifier {
   Future<void> action(PostAction action) async {
     switch (action) {
       case TapPost():
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        break;
       case TapBookMark():
         await _tapBookMark();
         break;

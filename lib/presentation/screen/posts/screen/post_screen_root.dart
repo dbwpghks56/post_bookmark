@@ -22,8 +22,7 @@ class PostScreenRoot extends StatelessWidget {
               case TapPost():
                 context.push(Routes.detail.changeIdtoValue(id: action.postId));
               case TapBookMark():
-                // TODO: Handle this case.
-                throw UnimplementedError();
+                break;
             }
           },
         );
