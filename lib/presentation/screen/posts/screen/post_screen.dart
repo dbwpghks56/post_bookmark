@@ -23,7 +23,7 @@ class PostScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('$index'),
+                        Text('${state.posts[index].id}'),
                         Text(state.posts[index].title),
                       ],
                     ),
