@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:post_bookmark/core/di/di_setup.dart';
 import 'package:post_bookmark/core/routing/router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final pref = await SharedPreferences.getInstance();
+
+  getIt.registerSingleton<SharedPreferences>(pref);
+
   di();
 
   runApp(const MyApp());
