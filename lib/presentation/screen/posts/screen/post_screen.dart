@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:post_bookmark/post/domain/model/post.dart';
 import 'package:post_bookmark/presentation/screen/posts/post_action.dart';
 import 'package:post_bookmark/presentation/screen/posts/post_state.dart';
 
@@ -10,21 +11,45 @@ class PostScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Post> posts = state.posts;
+
     return Scaffold(
       body: state.isLoading == false
           ? ListView.separated(
-              itemCount: state.posts.length,
+              itemCount: posts.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    onAction(PostAction.tapPost(postId: state.posts[index].id));
+                    onAction(PostAction.tapPost(postId: posts[index].id));
                   },
                   child: SizedBox(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('${state.posts[index].id}'),
-                        Text(state.posts[index].title),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('${posts[index].id}'),
+                              Text(
+                                posts[index].title,
+                                style: TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          child: IconButton(
+                            icon: Icon(Icons.bookmark_add),
+                            onPressed: () {
+                              onAction(
+                                PostAction.tapBookMark(postId: posts[index].id),
+                              );
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   ),
