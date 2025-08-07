@@ -25,7 +25,6 @@ final router = GoRouter(
         final PostDetailViewModel viewModel = getIt<PostDetailViewModel>();
 
         final int id = int.parse(state.pathParameters['id']!);
-        print(id);
         viewModel.init(postId: id);
 
         return PostDetailScreenRoot(viewModel: viewModel);
