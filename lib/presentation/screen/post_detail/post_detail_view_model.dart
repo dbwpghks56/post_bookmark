@@ -17,9 +17,14 @@ class PostDetailViewModel extends ChangeNotifier {
     _state = state.copyWith(isLoading: true);
     notifyListeners();
 
-    Post post = await _repository.findByPostId(postId: postId);
+    try {
+      Post post = await _repository.findByPostId(postId: postId);
 
-    _state = state.copyWith(isLoading: false, post: post);
-    notifyListeners();
+      _state = state.copyWith(isLoading: false, post: post);
+      notifyListeners();
+    } on Exception catch (e) {
+      _state = state.copyWith(isLoading: false, error: e);
+      notifyListeners();
+    }
   }
 }
