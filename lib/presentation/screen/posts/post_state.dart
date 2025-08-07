@@ -7,7 +7,13 @@ part 'post_state.freezed.dart';
 class PostState with _$PostState {
   final bool isLoading;
   final List<Post> posts;
+  final Set<String> bookmarks;
   final Exception? error;
 
-  const PostState({this.isLoading = false, this.posts = const [], this.error});
+  const PostState({
+    this.isLoading = false,
+    this.posts = const [],
+    this.error,
+    this.bookmarks = const {},
+  });
 }
