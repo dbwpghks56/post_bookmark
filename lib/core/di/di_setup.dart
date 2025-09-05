@@ -1,11 +1,12 @@
 import 'package:get_it/get_it.dart';
 import 'package:post_bookmark/bookmark/data_source/bookmark_data_source.dart';
 import 'package:post_bookmark/bookmark/data_source/impl/bookmark_data_source_impl.dart';
+import 'package:post_bookmark/core/helper/network_helper.dart';
+import 'package:post_bookmark/core/network/http_client.dart';
+import 'package:post_bookmark/core/network/impl/http_client_impl.dart';
 import 'package:post_bookmark/core/usecase/toggle_bookmark_usecase.dart';
 import 'package:post_bookmark/core/utils/local/data_source/impl/shrdpref_data_source.dart';
 import 'package:post_bookmark/core/utils/local/data_source/local_data_source.dart';
-import 'package:post_bookmark/core/utils/http/data_source/http_data_source.dart';
-import 'package:post_bookmark/core/utils/http/data_source/impl/http_data_source_impl.dart';
 import 'package:post_bookmark/post/data/data_source/impl/post_data_source_impl.dart';
 import 'package:post_bookmark/post/data/data_source/post_data_source.dart';
 import 'package:post_bookmark/post/data/repository/post_repository_impl.dart';
@@ -18,7 +19,9 @@ final getIt = GetIt.instance;
 
 void di() {
   // 패키지 추상화
-  getIt.registerLazySingleton<HttpDataSource>(() => HttpDataSourceImpl());
+  getIt.registerLazySingleton<HttpClient>(
+    () => HttpClientImpl(dio: NetworkHelper.dio),
+  );
   getIt.registerLazySingleton<LocalDataSource>(
     () => ShrdprefDataSource(preferences: getIt<SharedPreferences>()),
   );
