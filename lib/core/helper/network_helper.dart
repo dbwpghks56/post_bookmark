@@ -7,6 +7,7 @@ abstract class NetworkHelper {
   static Dio _createDio() {
     final dio = Dio(
       BaseOptions(
+        baseUrl: '',
         connectTimeout: const Duration(seconds: timeoutDuration),
         receiveTimeout: const Duration(seconds: timeoutDuration),
         sendTimeout: const Duration(seconds: timeoutDuration),
