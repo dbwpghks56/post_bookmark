@@ -15,7 +15,7 @@ final router = GoRouter(
     GoRoute(
       path: Routes.posts,
       builder: (context, state) {
-        return PostScreenRoot(viewModelProvider: getIt());
+        return PostScreen(provider: getIt());
       },
     ),
     GoRoute(

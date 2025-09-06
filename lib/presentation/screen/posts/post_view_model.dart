@@ -35,6 +35,7 @@ class PostViewModel extends BaseViewModel<PostState> {
     state = state.copyWith(bookmarks: bookmarks);
   }
 
+  @override
   Future<void> init() async {
     await excute(
       action: () async {
