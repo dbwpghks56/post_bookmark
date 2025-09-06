@@ -1,1 +1,1 @@
-sealed class BaseAction {}
+abstract interface class BaseAction {}

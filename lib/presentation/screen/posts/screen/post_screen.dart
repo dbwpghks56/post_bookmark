@@ -26,16 +26,16 @@ class PostScreen extends StatelessWidget {
         children: [
           const SizedBox(height: 50),
           Text('Hello'),
-          BaseConsumerWidget<PostState, PostViewModel>(
+          BaseConsumerWidget<PostState, PostAction, PostViewModel>(
             provider: provider,
             // loadingWidget: const CircularProgressIndicator(
             //   color: Colors.amberAccent,
             // ),
             child: Column(children: [Text('로딩 끝')]),
           ),
-          BaseActionWidget<PostState, PostViewModel>(
+          BaseActionWidget<PostState, PostAction, PostViewModel>(
             provider: provider,
-            onPressed: PostAction.tapPost(postId: 1),
+            action: PostAction.tapPost(postId: 1),
             child: Text('loading'),
           ),
         ],

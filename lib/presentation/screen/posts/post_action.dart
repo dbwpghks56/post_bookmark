@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:post_bookmark/core/base/base_action.dart';
 
-sealed class PostAction {
+sealed class PostAction implements BaseAction {
   const factory PostAction.tapPost({required int postId}) = TapPost;
   const factory PostAction.tapBookMark({required int postId}) = TapBookMark;
 }
