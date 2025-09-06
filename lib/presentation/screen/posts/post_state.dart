@@ -1,19 +1,32 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:post_bookmark/core/base/base_state.dart';
 import 'package:post_bookmark/post/domain/model/post.dart';
 
-part 'post_state.freezed.dart';
-
-class PostState extends BaseState {
+class PostState extends BaseState<PostState> {
   final List<Post> posts;
   final Set<String> bookmarks;
 
-  PostState({this.posts = const [], this.bookmarks = const {}});
+  const PostState({
+    this.posts = const [],
+    this.bookmarks = const {},
+    super.isLoading = false,
+    super.isRefresh = false,
+    super.error,
+  });
 
-  PostState copyWith({List<Post>? posts, Set<String>? bookmarks}) {
+  @override
+  PostState copyWith({
+    List<Post>? posts,
+    Set<String>? bookmarks,
+    bool? isLoading,
+    bool? isRefresh,
+    Exception? error,
+  }) {
     return PostState(
       posts: posts ?? this.posts,
       bookmarks: bookmarks ?? this.bookmarks,
+      isLoading: isLoading ?? this.isLoading,
+      isRefresh: isRefresh ?? this.isRefresh,
+      error: error ?? this.error,
     );
   }
 }

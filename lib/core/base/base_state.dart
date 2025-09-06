@@ -1,16 +1,10 @@
-abstract class BaseState {
-  bool _isLoading = false;
-  bool _isRefresh = false;
-  Exception? error;
+abstract class BaseState<T> {
+  final bool isLoading;
+  final bool isRefresh;
+  final Exception? error;
 
-  bool get isLoading => _isLoading;
-  bool get isRefresh => _isRefresh;
+  const BaseState({this.isLoading = false, this.isRefresh = false, this.error});
 
-  void processDone() {
-    _isLoading = false;
-  }
-
-  void processLoading() {
-    _isLoading = true;
-  }
+  // 하위 클래스에서 구현해야 하는 copyWith 메서드
+  T copyWith({bool? isLoading, bool? isRefresh, Exception? error});
 }
