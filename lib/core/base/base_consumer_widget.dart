@@ -5,7 +5,7 @@ import 'package:post_bookmark/core/base/base_state_widget.dart';
 import 'package:post_bookmark/core/base/base_view_model.dart';
 
 class BaseConsumerWidget<S extends BaseState<S>, V extends BaseViewModel<S>>
-    extends ConsumerWidget {
+    extends ConsumerStatefulWidget {
   final StateNotifierProvider<V, S> provider;
   final Widget child;
   final Widget? loadingWidget;
@@ -18,15 +18,24 @@ class BaseConsumerWidget<S extends BaseState<S>, V extends BaseViewModel<S>>
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(provider);
-    final action = ref.read(provider.notifier);
+  _BaseConsumerWidgetState createState() => _BaseConsumerWidgetState();
+}
 
-    return BaseStateWidget<S, V>(
-      state: state,
-      viewModel: action,
-      loadingWidget: loadingWidget,
-      child: child,
-    );
+class _BaseConsumerWidgetState extends ConsumerState<BaseConsumerWidget> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(widget.provider.notifier).init();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final state = ref.watch(widget.provider);
+
+    return state.isLoading
+        ? widget.loadingWidget ?? const CircularProgressIndicator()
+        : widget.child;
   }
 }

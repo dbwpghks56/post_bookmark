@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:post_bookmark/core/base/base_action_widget.dart';
 import 'package:post_bookmark/core/base/base_consumer_widget.dart';
 import 'package:post_bookmark/post/domain/model/post.dart';
 import 'package:post_bookmark/presentation/screen/posts/post_action.dart';
@@ -30,7 +31,12 @@ class PostScreen extends StatelessWidget {
             // loadingWidget: const CircularProgressIndicator(
             //   color: Colors.amberAccent,
             // ),
-            child: Text('로딩 끝'),
+            child: Column(children: [Text('로딩 끝')]),
+          ),
+          BaseActionWidget<PostState, PostViewModel>(
+            provider: provider,
+            onPressed: PostAction.tapPost(postId: 1),
+            child: Text('loading'),
           ),
         ],
       ),

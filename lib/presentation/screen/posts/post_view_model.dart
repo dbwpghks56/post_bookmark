@@ -20,9 +20,12 @@ class PostViewModel extends BaseViewModel<PostState> {
        _bookmarkDataSource = datasource,
        super(PostState());
 
+  @override
   Future<void> onAction(PostAction action) async {
     switch (action) {
       case TapPost():
+        print(action.postId);
+        await init();
         break;
       case TapBookMark():
         await _tapBookMark(action.postId);
@@ -37,7 +40,7 @@ class PostViewModel extends BaseViewModel<PostState> {
 
   @override
   Future<void> init() async {
-    await excute(
+    await execute(
       action: () async {
         final List<Post> posts = await _repository.findAll();
         final Set<String> bookmarks = await _bookmarkDataSource.findAll();
