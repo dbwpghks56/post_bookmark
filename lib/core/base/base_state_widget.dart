@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:post_bookmark/core/base/base_action.dart';
 import 'package:post_bookmark/core/base/base_state.dart';
 import 'package:post_bookmark/core/base/base_view_model.dart';
 
-class BaseStateWidget<
-  S extends BaseState<S>,
-  A extends BaseAction,
-  V extends BaseViewModel<S, A>
->
+class BaseStateWidget<S extends BaseState<S>, V extends BaseViewModel<S>>
     extends StatefulWidget {
   final S state;
   final V viewModel;
@@ -23,16 +18,11 @@ class BaseStateWidget<
   });
 
   @override
-  State<BaseStateWidget<S, A, V>> createState() =>
-      _BaseStateWidgetState<S, A, V>();
+  State<BaseStateWidget<S, V>> createState() => _BaseStateWidgetState<S, V>();
 }
 
-class _BaseStateWidgetState<
-  S extends BaseState<S>,
-  A extends BaseAction,
-  V extends BaseViewModel<S, A>
->
-    extends State<BaseStateWidget<S, A, V>> {
+class _BaseStateWidgetState<S extends BaseState<S>, V extends BaseViewModel<S>>
+    extends State<BaseStateWidget<S, V>> {
   @override
   void initState() {
     super.initState();

@@ -6,7 +6,7 @@ import 'package:post_bookmark/post/domain/respository/post_repository.dart';
 import 'package:post_bookmark/presentation/screen/posts/post_action.dart';
 import 'package:post_bookmark/presentation/screen/posts/post_state.dart';
 
-class PostViewModel extends BaseViewModel<PostState, PostAction> {
+class PostViewModel extends BaseViewModel<PostState> {
   final PostRepository _repository;
   final BookmarkDataSource _bookmarkDataSource;
   final ToggleBookmarkUsecase _usecase;

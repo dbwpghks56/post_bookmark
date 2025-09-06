@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:post_bookmark/core/base/base_action.dart';
 import 'package:post_bookmark/core/base/base_state.dart';
 import 'package:post_bookmark/core/base/base_state_widget.dart';
 import 'package:post_bookmark/core/base/base_view_model.dart';
 
-class BaseConsumerWidget<
-  S extends BaseState<S>,
-  A extends BaseAction,
-  V extends BaseViewModel<S, A>
->
+class BaseConsumerWidget<S extends BaseState<S>>
     extends ConsumerStatefulWidget {
-  final StateNotifierProvider<V, S> provider;
+  final StateNotifierProvider<BaseViewModel<S>, S> provider;
   final Widget child;
   final Widget? loadingWidget;
 

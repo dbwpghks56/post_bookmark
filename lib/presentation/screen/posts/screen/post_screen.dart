@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:post_bookmark/core/base/base_action_widget.dart';
 import 'package:post_bookmark/core/base/base_consumer_widget.dart';
-import 'package:post_bookmark/post/domain/model/post.dart';
 import 'package:post_bookmark/presentation/screen/posts/post_action.dart';
 import 'package:post_bookmark/presentation/screen/posts/post_state.dart';
 import 'package:post_bookmark/presentation/screen/posts/post_view_model.dart';
 
 class PostScreen extends StatelessWidget {
   // final PostState state;
-  // final void Function(PostAction) onAction;
+  final void Function(PostAction) onAction;
   final StateNotifierProvider<PostViewModel, PostState> provider;
 
   const PostScreen({
     super.key,
     // required this.state,
-    // required this.onAction,
+    required this.onAction,
     required this.provider,
   });
 
@@ -26,16 +25,15 @@ class PostScreen extends StatelessWidget {
         children: [
           const SizedBox(height: 50),
           Text('Hello'),
-          BaseConsumerWidget<PostState, PostAction, PostViewModel>(
+          BaseConsumerWidget<PostState>(
             provider: provider,
             // loadingWidget: const CircularProgressIndicator(
             //   color: Colors.amberAccent,
             // ),
             child: Column(children: [Text('로딩 끝')]),
           ),
-          BaseActionWidget<PostState, PostAction, PostViewModel>(
+          BaseActionWidget<PostState>(
             provider: provider,
-            action: PostAction.tapPost(postId: 1),
             child: Text('loading'),
           ),
         ],
