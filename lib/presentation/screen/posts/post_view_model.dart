@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:post_bookmark/bookmark/data_source/bookmark_data_source.dart';
+import 'package:post_bookmark/core/base/base_action.dart';
 import 'package:post_bookmark/core/base/base_view_model.dart';
 import 'package:post_bookmark/core/routing/routes.dart';
 import 'package:post_bookmark/core/usecase/toggle_bookmark_usecase.dart';

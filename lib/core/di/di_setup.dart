@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:post_bookmark/bookmark/data_source/bookmark_data_source.dart';
 import 'package:post_bookmark/bookmark/data_source/impl/bookmark_data_source_impl.dart';
+import 'package:post_bookmark/core/base/base_view_model.dart';
 import 'package:post_bookmark/core/usecase/toggle_bookmark_usecase.dart';
 import 'package:post_bookmark/core/utils/local/data_source/impl/shrdpref_data_source.dart';
 import 'package:post_bookmark/core/utils/local/data_source/local_data_source.dart';
@@ -12,6 +13,7 @@ import 'package:post_bookmark/post/data/data_source/post_data_source.dart';
 import 'package:post_bookmark/post/data/repository/post_repository_impl.dart';
 import 'package:post_bookmark/post/domain/respository/post_repository.dart';
 import 'package:post_bookmark/presentation/screen/post_detail/post_detail_view_model.dart';
+import 'package:post_bookmark/presentation/screen/posts/post_action.dart';
 import 'package:post_bookmark/presentation/screen/posts/post_state.dart';
 import 'package:post_bookmark/presentation/screen/posts/post_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -51,8 +53,8 @@ void di() {
     ),
   );
 
-  getIt.registerFactory<StateNotifierProvider<PostViewModel, PostState>>(
-    () => StateNotifierProvider<PostViewModel, PostState>(
+  getIt.registerSingleton<StateNotifierProvider<PostViewModel, PostState>>(
+    StateNotifierProvider<PostViewModel, PostState>(
       (ref) => getIt<PostViewModel>(),
     ),
   );
