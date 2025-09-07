@@ -27,11 +27,10 @@ class PostViewModel extends BaseViewModel<PostState, PostAction> {
   Future<void> onAction(PostAction action) async {
     switch (action) {
       case TapPost():
-        action.context.push(Routes.detail.changeIdtoValue(id: action.postId));
         await init();
         break;
       case TapBookMark():
-        await _tapBookMark(action.postId);
+        print(action.postId);
         break;
     }
   }
