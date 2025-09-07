@@ -1,19 +1,38 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:post_bookmark/core/base/base_component_enum.dart';
+import 'package:post_bookmark/core/base/base_state.dart';
 import 'package:post_bookmark/post/domain/model/post.dart';
 
-part 'post_state.freezed.dart';
+enum PostComponentLoading implements BaseComponentEnum { button }
 
-@freezed
-class PostState with _$PostState {
-  final bool isLoading;
+class PostState extends BaseState<PostState> {
   final List<Post> posts;
   final Set<String> bookmarks;
-  final Exception? error;
 
   const PostState({
-    this.isLoading = false,
     this.posts = const [],
-    this.error,
     this.bookmarks = const {},
+    super.isLoading = false,
+    super.isRefresh = false,
+    super.error,
+    super.componentsLoading,
   });
+
+  @override
+  PostState copyWith({
+    List<Post>? posts,
+    Set<String>? bookmarks,
+    bool? isLoading,
+    bool? isRefresh,
+    Exception? error,
+    Map<String, bool>? componentsLoading,
+  }) {
+    return PostState(
+      posts: posts ?? this.posts,
+      bookmarks: bookmarks ?? this.bookmarks,
+      isLoading: isLoading ?? this.isLoading,
+      isRefresh: isRefresh ?? this.isRefresh,
+      error: error ?? this.error,
+      componentsLoading: componentsLoading ?? this.componentsLoading,
+    );
+  }
 }
