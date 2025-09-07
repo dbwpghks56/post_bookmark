@@ -1,5 +1,8 @@
+import 'package:post_bookmark/core/base/base_component_enum.dart';
 import 'package:post_bookmark/core/base/base_state.dart';
 import 'package:post_bookmark/post/domain/model/post.dart';
+
+enum PostComponentLoading implements BaseComponentEnum { button }
 
 class PostState extends BaseState<PostState> {
   final List<Post> posts;
@@ -11,6 +14,7 @@ class PostState extends BaseState<PostState> {
     super.isLoading = false,
     super.isRefresh = false,
     super.error,
+    super.componentsLoading,
   });
 
   @override
@@ -20,6 +24,7 @@ class PostState extends BaseState<PostState> {
     bool? isLoading,
     bool? isRefresh,
     Exception? error,
+    Map<String, bool>? componentsLoading,
   }) {
     return PostState(
       posts: posts ?? this.posts,
@@ -27,6 +32,7 @@ class PostState extends BaseState<PostState> {
       isLoading: isLoading ?? this.isLoading,
       isRefresh: isRefresh ?? this.isRefresh,
       error: error ?? this.error,
+      componentsLoading: componentsLoading ?? this.componentsLoading,
     );
   }
 }
