@@ -10,13 +10,13 @@ import 'package:post_bookmark/presentation/screen/posts/post_view_model.dart';
 import 'package:post_bookmark/presentation/screen/posts/screen/post_screen.dart';
 
 class PostScreenRoot extends StatelessWidget {
-  final StateNotifierProvider<PostViewModel, PostState> viewModelProvider;
-  const PostScreenRoot({super.key, required this.viewModelProvider});
+  final StateNotifierProvider<PostViewModel, PostState> provider;
+  const PostScreenRoot({super.key, required this.provider});
 
   @override
   Widget build(BuildContext context) {
     return PostScreen(
-      provider: viewModelProvider,
+      provider: provider,
       onAction: (PostAction action) async {
         switch (action) {
           case TapPost():

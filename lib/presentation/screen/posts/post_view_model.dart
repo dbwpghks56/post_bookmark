@@ -1,12 +1,15 @@
+import 'package:go_router/go_router.dart';
 import 'package:post_bookmark/bookmark/data_source/bookmark_data_source.dart';
 import 'package:post_bookmark/core/base/base_view_model.dart';
+import 'package:post_bookmark/core/routing/routes.dart';
 import 'package:post_bookmark/core/usecase/toggle_bookmark_usecase.dart';
+import 'package:post_bookmark/core/utils/route_util.dart';
 import 'package:post_bookmark/post/domain/model/post.dart';
 import 'package:post_bookmark/post/domain/respository/post_repository.dart';
 import 'package:post_bookmark/presentation/screen/posts/post_action.dart';
 import 'package:post_bookmark/presentation/screen/posts/post_state.dart';
 
-class PostViewModel extends BaseViewModel<PostState> {
+class PostViewModel extends BaseViewModel<PostState, PostAction> {
   final PostRepository _repository;
   final BookmarkDataSource _bookmarkDataSource;
   final ToggleBookmarkUsecase _usecase;
@@ -24,7 +27,7 @@ class PostViewModel extends BaseViewModel<PostState> {
   Future<void> onAction(PostAction action) async {
     switch (action) {
       case TapPost():
-        print(action.postId);
+        action.context.push(Routes.detail.changeIdtoValue(id: action.postId));
         await init();
         break;
       case TapBookMark():
